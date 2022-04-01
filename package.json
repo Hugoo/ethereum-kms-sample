@@ -1,0 +1,28 @@
+{
+  "name": "ethereum-kms-sample",
+  "version": "1.0.0",
+  "description": "Demo app to sign ethereum tx with Google Cloud KMS",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hugoo/ethereum-kms-sample.git"
+  },
+  "author": "Hugoo",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Hugoo/ethereum-kms-sample/issues"
+  },
+  "homepage": "https://github.com/Hugoo/ethereum-kms-sample#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
