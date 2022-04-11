@@ -123,8 +123,77 @@ npx ts-node src/check-keys.ts
 
 This script should output the expected Ethereum address associated with your KMS key.
 
+## Alchemy / Ropsten
+
+We will need a RPC access to the Ethereum network, you can get one from [Alchemy](https://alchemy.com/?r=27e4ddf8eccfd874) (this is an affiliate link).
+
+![alchemy create app](./docs/images/alchemy.png)
+
+Then grab your API key:
+
+![alchemy app key](./docs/images/alchemy-key.png)
+
+And add this key in your `.env` file for the `ALCHEMY_API_KEY=` variable.
+
+You can also get rETH from a faucet, to fund your account (running the `check-keys.ts` script should give you your Ethereum address).
+
 ## Ether.js
 
-## web3.js
+With [Ethers.js](https://ethers.io/#!/app-link/welcome.ethers.space/), we can use the [`Signer` API](https://docs.ethers.io/v5/api/signer/) to connect to KMS.
+
+Luckily, there is this super package which lets you use it very easily: <https://github.com/openlawteam/ethers-gcp-kms-signer>.
+
+You can check the code in the `./src/ethersjs.ts` file.
+
+```sh
+npx ts-node src/check-keys.ts
+```
+
+```js
+{
+  type: 2,
+  chainId: 3,
+  nonce: 0,
+  maxPriorityFeePerGas: BigNumber { _hex: '0x59682f00', _isBigNumber: true },
+  maxFeePerGas: BigNumber { _hex: '0x11210f9eac', _isBigNumber: true },
+  gasPrice: null,
+  gasLimit: BigNumber { _hex: '0x5208', _isBigNumber: true },
+  to: '0xE94E130546485b928C9C9b9A5e69EB787172952e',
+  value: BigNumber { _hex: '0x038d7ea4c68000', _isBigNumber: true },
+  data: '0x',
+  accessList: [],
+  hash: '0xda045876596e832703b131cfc5991a18617a0685dcdbd571da52273c6e481fbc',
+  v: 0,
+  r: '0x49c68f3df02aeb31d00b3326446973f0453c76cb7afc6ff8c78f7c00f928e8da',
+  s: '0x522df0a097fc6452e75995c606b8de5793a7b9d1623d35753b113317fc6ca1fa',
+  from: '0x19a7930683619396d06bdA6Ce43dc7A8659E7C20',
+  confirmations: 0,
+  wait: [Function (anonymous)]
+}
+```
+
+## web3.js - WIP
+
+To use KMS with Web3js, we can either:
+
+- Create a provider
+- Create an account
+
+The account should have this interface:
+
+```ts
+export interface Account {
+  address: string;
+  privateKey: string;
+  signTransaction: (
+    transactionConfig: TransactionConfig,
+    callback?: (signTransaction: SignedTransaction) => void,
+  ) => Promise<SignedTransaction>;
+  sign: (data: string) => Sign;
+  encrypt: (password: string) => EncryptedKeystoreV3Json;
+}
+```
 
 # References
+
+- <https://github.com/odanado/aws-kms-provider#examples>
