@@ -21,7 +21,7 @@ signer = signer.connect(provider);
 
 const main = async () => {
   const tx = await signer.sendTransaction({
-    to: '0xE94E130546485b928C9C9b9A5e69EB787172952e',
+    to: '0x9C71fBe2d28080b8afa88cea8a1E319De2c09d44',
     value: ethers.utils.parseEther('0.001'),
   });
   console.log(tx);
